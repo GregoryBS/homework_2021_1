@@ -37,9 +37,9 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
 	});
 	QUnit.test('Работает с неверными входными данными', function (assert) {
-		assert.deepEqual(plain(1), undefined);
-		assert.deepEqual(plain("str"), undefined);
-		assert.deepEqual(plain(2, "string", []), undefined);
-		assert.deepEqual(plain(null, undefined), undefined);
+		assert.throws(() => (plain(1), TypeError("Invalid input param")));
+		assert.throws(() => (plain("str"), TypeError("Invalid input param")));
+		assert.throws(() => (plain(12, "please", []), TypeError("Invalid input param")));
+		assert.throws(() => (plain(null, undefined), TypeError("Invalid input param")));
 	});
 });

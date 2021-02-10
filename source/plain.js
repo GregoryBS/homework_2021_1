@@ -7,11 +7,12 @@
  * @returns {Array}
  */
 const plain = (originalArray) => {
-    if (!Array.isArray(originalArray)) return undefined;
+    if (!Array.isArray(originalArray)) throw TypeError("Invalid input param");
 
     return originalArray.reduce((result, currentItem) => {
-        return result.concat(Array.isArray(currentItem) 
-                                ? plain(currentItem) 
-                                : currentItem);
+        let pieceOfArray = Array.isArray(currentItem) 
+            ? plain(currentItem) 
+            : currentItem;
+        return result.concat(pieceOfArray);
     }, []);
 };
