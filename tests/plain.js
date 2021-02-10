@@ -37,9 +37,9 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
 	});
 	QUnit.test('Работает с неверными входными данными', function (assert) {
-		assert.deepEqual(plain(1), []);
-		assert.deepEqual(plain("str"), []);
-		assert.deepEqual(plain(2, "string", []), []);
-		assert.deepEqual(plain(null, undefined), []);
+		assert.deepEqual(plain(1), undefined);
+		assert.deepEqual(plain("str"), undefined);
+		assert.deepEqual(plain(2, "string", []), undefined);
+		assert.deepEqual(plain(null, undefined), undefined);
 	});
 });
