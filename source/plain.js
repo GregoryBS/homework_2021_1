@@ -1,19 +1,17 @@
-'use strict';
+'use strict'
 
 /***
  * Сreates a new array with all sub-array elements concatenated into it
  *
- * @param {Array} argArray - initial multi-array
+ * @param {Array} originalArray - initial multi-array
  * @returns {Array}
  */
-const plain = (argArray) => {
-    const func = (arg, result) => {
-        if (Array.isArray(arg)) {
-            arg.forEach((element) => result = func(element, result));
-            return result;
-        }
-        return result.concat(arg);
-    };
+const plain = (originalArray) => {
+    if (!Array.isArray(originalArray)) return undefined;
 
-    return Array.isArray(argArray) ? func(argArray, []) : undefined;
+    return originalArray.reduce((result, currentItem) => {
+        return result.concat(Array.isArray(currentItem) 
+                                ? plain(currentItem) 
+                                : currentItem);
+    }, []);
 };
